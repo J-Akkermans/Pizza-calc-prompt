@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1W2L1</title>
+</head>
+<body>
+    
+    <script>
+        const KLEIN = 5;
+        const MIDDEL = 7;
+        const GROOT = 10;
+
+        var vraagKlein = prompt("Hoeveel kleine pizzas wilt u? Deze kosten 5 euro per stuk");
+        var vraagMiddel = prompt("Hoeveel middelgrote pizzas wilt u? Deze kosten 7 euro per stuk");
+        var vraagGroot = prompt("Hoeveel grote pizzas wilt u? Deze kosten 10 euro per stuk");
+
+        console.log(typeof vraagKlein); //aantal totaal per pizza
+
+        var kleinePizza = parseInt(vraagKlein);
+        var middelPizza = parseInt(vraagMiddel);
+        var grootPizza = parseInt(vraagGroot);
+
+
+        alert("U heeft in totaal" + kleinePizza + " kleine pizza's besteld");
+        alert("U heeft in totaal" + middelPizza + " middelgrote pizza's besteld");
+        alert("U heeft in totaal" + grootPizza + " grote pizza's besteld");
+
+        var totaal = kleinePizza + middelPizza + grootPizza;
+        var totaalPrijs = kleinePizza*KLEIN + middelPizza*MIDDEL + grootPizza*GROOT;
+        document.write("U heeft totaal " + totaal +  "pizza's besteld" + "<br>");
+        document.write(totaalPrijs + " Euro");
+
+
+    </script>
+
+
+</body>
+</html>
