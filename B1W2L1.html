@@ -1,41 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B1W2L1</title>
 </head>
+
 <body>
-    
+    <div>
+        <p>
+            U heeft <span id="smallPizza"></span> kleine gekozen, dit kost <span id="smallPricePizza"></span>euro 
+        </p>
+        <p>
+            U heeft <span id="mediumPizza"></span> middelgrote gekozen, dit kost <span id="mediumPricePizza"></span>euro 
+        </p>
+        <p>
+            U heeft <span id="bigPizza"></span> grote gekozen, dit kost <span id="bigPricePizza"></span>euro 
+        </p>
+        <p>Totaalprijs: <span id="TotaalPrijs"></span></p>
+    </div>
     <script>
-        //J Akkermans 99044668
-        //Softare dev at Da Vinci
-
-        const KLEIN = 5;  //Constante prijs van pizza klein
-        const MIDDEL = 7; //Constante prijs van pizza middel
-        const GROOT = 10; //Constante prijs van pizza groot
  
-        var vraagKlein = prompt("Hoeveel kleine pizzas wilt u? Deze kosten 5 euro per stuk");        //prompt vraag voor aantal pizza
-        var vraagMiddel = prompt("Hoeveel middelgrote pizzas wilt u? Deze kosten 7 euro per stuk"); //prompt vraag voor aantal pizza
-        var vraagGroot = prompt("Hoeveel grote pizzas wilt u? Deze kosten 10 euro per stuk"); //prompt vraag voor aantal pizza
+        const PRICES = [5, 10, 15]; //[0] = SMALL, [1] = MEDIUM, [2] = BIG
+        var totalPrice = [0,0,0,0];
+        var quesitonSMALL = prompt("Hoeveel kleine pizza's wilt u bestellen?");
+        var quesitonMEDIUM = prompt("Hoeveel middelgrote pizza's wilt u bestellen?");
+        var quesitonBIG = prompt("Hoeveel grote pizza's wilt u bestellen?");
 
-        var kleinePizza = parseInt(vraagKlein);  //String naar nummers maken
-        var middelPizza = parseInt(vraagMiddel); //String naar nummers maken
-        var grootPizza = parseInt(vraagGroot); //String naar nummers maken
+        quesitonSMALL = parseInt(quesitonSMALL);
+        quesitonMEDIUM = parseInt(quesitonMEDIUM);
+        quesitonBIG = parseInt(quesitonBIG);
 
+        if(isNaN(quesitonSMALL)){
+            quesitonSMALL = 0;
+        }
+        else{
+            totalPrice[0] = quesitonSMALL*PRICES[0]; 
+        }
+        if(isNaN(quesitonMEDIUM)){
+            quesitonMEDIUM = 0;
+        }
+        else{
+            totalPrice[1] = quesitonMEDIUM*PRICES[1]; 
+1        }
+        if(isNaN(quesitonBIG)){
+            quesitonBIG = 0;
+        }
+        else{
+            totalPrice[2] = quesitonBIG*PRICES[2]; 
+1        }
+            
+        const SPATIE = " ";
+        var smallPizzaID = document.getElementById("smallPizza").innerHTML = SPATIE + quesitonSMALL + SPATIE;
+        var mediumPizzaId = document.getElementById("mediumPizza").innerHTML = SPATIE + quesitonMEDIUM + SPATIE;
+        var bigPizzaId = document.getElementById("bigPizza").innerHTML = SPATIE + quesitonBIG + SPATIE;
 
-        alert("U heeft in totaal" + kleinePizza + " kleine pizza's besteld");  //alert van aantal bestelde pizza's
-        alert("U heeft in totaal" + middelPizza + " middelgrote pizza's besteld"); //alert van aantal bestelde pizza's
-        alert("U heeft in totaal" + grootPizza + " grote pizza's besteld"); //alert van aantal bestelde pizza's
+        var smallPizzaPriceID = document.getElementById("smallPricePizza").innerHTML = SPATIE + totalPrice[0] + SPATIE;
+        var mediumPizzaPriceId = document.getElementById("mediumPricePizza").innerHTML = SPATIE + totalPrice[1] + SPATIE;
+        var bigPizzaPriceId = document.getElementById("bigPricePizza").innerHTML = SPATIE + totalPrice[2] + SPATIE;
 
-        var totaal = kleinePizza + middelPizza + grootPizza; //optellen van aantal pizza's
-        var totaalPrijs = kleinePizza*KLEIN + middelPizza*MIDDEL + grootPizza*GROOT; //totaal prijs berekenen
-        document.write("U heeft totaal " + totaal +  "pizza's besteld" + "<br>"); //het schrijven van totaal aantal pizza's in het document
-        document.write(totaalPrijs + " Euro"); //totaal prijs schrijven in document
-
-
+        var finalPrice = totalPrice[0] + totalPrice[1] + totalPrice[2];
+        document.getElementById("TotaalPrijs").innerHTML = finalPrice;
+1
     </script>
 
 
 </body>
+
 </html>
