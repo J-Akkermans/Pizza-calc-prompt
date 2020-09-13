@@ -10,20 +10,21 @@
 <body>
     <div>
         <p>
-            U heeft <span id="smallPizza"></span> kleine gekozen, dit kost <span id="smallPricePizza"></span>euro 
+            U heeft <span id="smallPizza"></span> kleine gekozen, dit kost <span id="smallPricePizza"></span>euro
         </p>
         <p>
-            U heeft <span id="mediumPizza"></span> middelgrote gekozen, dit kost <span id="mediumPricePizza"></span>euro 
+            U heeft <span id="mediumPizza"></span> middelgrote gekozen, dit kost <span id="mediumPricePizza"></span>euro
         </p>
         <p>
-            U heeft <span id="bigPizza"></span> grote gekozen, dit kost <span id="bigPricePizza"></span>euro 
+            U heeft <span id="bigPizza"></span> grote gekozen, dit kost <span id="bigPricePizza"></span>euro
         </p>
-        <p>Totaalprijs: <span id="TotaalPrijs"></span></p>
+        <hr>
+        <p>Totaalprijs: <span id="TotaalPrijs"></span> euro</p>
+        <button onclick="editOrder()">Wijzig bestelling</button>
     </div>
     <script>
- 
         const PRICES = [5, 10, 15]; //[0] = SMALL, [1] = MEDIUM, [2] = BIG
-        var totalPrice = [0,0,0,0];
+        var totalPrice = [0, 0, 0, 0];
         var quesitonSMALL = prompt("Hoeveel kleine pizza's wilt u bestellen?");
         var quesitonMEDIUM = prompt("Hoeveel middelgrote pizza's wilt u bestellen?");
         var quesitonBIG = prompt("Hoeveel grote pizza's wilt u bestellen?");
@@ -32,37 +33,80 @@
         quesitonMEDIUM = parseInt(quesitonMEDIUM);
         quesitonBIG = parseInt(quesitonBIG);
 
-        if(isNaN(quesitonSMALL)){
+        function editOrder() {
+            if (confirm(
+                    "Weet u zeker dat u de betelling wilt bijwerken? \n Ok om door te gaan \n Annuleren om te stoppen"
+                )) {
+                quesitonSMALL = prompt("U heeft op dit moment" + quesitonSMALL + "kleine pizza's" +
+                    "\n Hoeveel kleine pizza's wilt u bestellen?");
+                if (isNaN(quesitonSMALL)) {
+                    quesitonSMALL;
+                } else {
+                    smallPizzaID = document.getElementById("smallPizza").innerHTML = SPATIE + quesitonSMALL + SPATIE;
+                    totalPrice[0] = quesitonSMALL * PRICES[0];
+                    smallPizzaPriceID = document.getElementById("smallPricePizza").innerHTML = SPATIE + totalPrice[0] +
+                        SPATIE;
+                }
+                quesitonMEDIUM = prompt("U heeft op dit moment" + quesitonMEDIUM + "middelgrote pizza's" +
+                    "\n Hoeveel middelgrote pizza's wilt u bestellen?");
+                if (isNaN(quesitonMEDIUM)) {
+                    quesitonMEDIUM = 0;
+                } else {
+                    mediumPizzaId = document.getElementById("mediumPizza").innerHTML = SPATIE + quesitonMEDIUM + SPATIE;
+                    totalPrice[1] = quesitonMEDIUM * PRICES[1];
+                    var mediumPizzaPriceId = document.getElementById("mediumPricePizza").innerHTML = SPATIE +
+                        totalPrice[1] +
+                        SPATIE;
+                }
+                quesitonBIG = prompt("U heeft op dit moment" + quesitonBIG + "grote pizza's" +
+                    "\n Hoeveel grote pizza's wilt u bestellen?");
+                if (isNaN(quesitonBIG)) {
+                    quesitonBIG = 0;
+                } else {
+                    var bigPizzaId = document.getElementById("bigPizza").innerHTML = SPATIE + quesitonBIG + SPATIE;
+                    totalPrice[2] = quesitonBIG * PRICES[2];
+                    var bigPizzaPriceId = document.getElementById("bigPricePizza").innerHTML = SPATIE + totalPrice[2] +
+                        SPATIE;
+                }
+                var finalPrice = totalPrice[0] + totalPrice[1] + totalPrice[2];
+                document.getElementById("TotaalPrijs").innerHTML = finalPrice;
+            } else {
+                console.log("cancel");
+            }
+        }
+        
+        //if statements om te kijken of eerste prompts geen "NaN" hebben.
+        if (isNaN(quesitonSMALL)) {
             quesitonSMALL = 0;
+        } else {
+            totalPrice[0] = quesitonSMALL * PRICES[0];
         }
-        else{
-            totalPrice[0] = quesitonSMALL*PRICES[0]; 
-        }
-        if(isNaN(quesitonMEDIUM)){
+        if (isNaN(quesitonMEDIUM)) {
             quesitonMEDIUM = 0;
+        } else {
+            totalPrice[1] = quesitonMEDIUM * PRICES[1];
         }
-        else{
-            totalPrice[1] = quesitonMEDIUM*PRICES[1]; 
-1        }
-        if(isNaN(quesitonBIG)){
+        if (isNaN(quesitonBIG)) {
             quesitonBIG = 0;
+        } else {
+            totalPrice[2] = quesitonBIG * PRICES[2];
         }
-        else{
-            totalPrice[2] = quesitonBIG*PRICES[2]; 
-1        }
-            
+        var finalPrice = totalPrice[0] + totalPrice[1] + totalPrice[2];
+        console.log(finalPrice);
+
+
+
         const SPATIE = " ";
         var smallPizzaID = document.getElementById("smallPizza").innerHTML = SPATIE + quesitonSMALL + SPATIE;
         var mediumPizzaId = document.getElementById("mediumPizza").innerHTML = SPATIE + quesitonMEDIUM + SPATIE;
         var bigPizzaId = document.getElementById("bigPizza").innerHTML = SPATIE + quesitonBIG + SPATIE;
 
         var smallPizzaPriceID = document.getElementById("smallPricePizza").innerHTML = SPATIE + totalPrice[0] + SPATIE;
-        var mediumPizzaPriceId = document.getElementById("mediumPricePizza").innerHTML = SPATIE + totalPrice[1] + SPATIE;
+        var mediumPizzaPriceId = document.getElementById("mediumPricePizza").innerHTML = SPATIE + totalPrice[1] +
+            SPATIE;
         var bigPizzaPriceId = document.getElementById("bigPricePizza").innerHTML = SPATIE + totalPrice[2] + SPATIE;
 
-        var finalPrice = totalPrice[0] + totalPrice[1] + totalPrice[2];
         document.getElementById("TotaalPrijs").innerHTML = finalPrice;
-1
     </script>
 
 
